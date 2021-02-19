@@ -19,9 +19,20 @@ class MyApp extends StatelessWidget {
 }
 
 class Instrument extends StatelessWidget {
-  void playSound(int sound_no) {
+  void playSound(int soundNo) {
     final player = AudioCache();
-    player.play('note${sound_no}.wav');
+    player.play('note${soundNo}.wav');
+  }
+
+  Widget buildKey(Color c, int soundNo) {
+    return Expanded(
+      child: FlatButton(
+        onPressed: () {
+          playSound(soundNo);
+        },
+        color: c,
+      ),
+    );
   }
 
   @override
@@ -29,62 +40,13 @@ class Instrument extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(
-          child: FlatButton(
-            onPressed: () {
-              playSound(1);
-            },
-            color: Colors.red,
-          ),
-        ),
-        Expanded(
-          child: FlatButton(
-            onPressed: () {
-              playSound(2);
-            },
-            color: Colors.orange,
-          ),
-        ),
-        Expanded(
-          child: FlatButton(
-            onPressed: () {
-              playSound(3);
-            },
-            color: Colors.yellow,
-          ),
-        ),
-        Expanded(
-          child: FlatButton(
-            onPressed: () {
-              playSound(4);
-            },
-            color: Colors.green,
-          ),
-        ),
-        Expanded(
-          child: FlatButton(
-            onPressed: () {
-              playSound(5);
-            },
-            color: Colors.green.shade900,
-          ),
-        ),
-        Expanded(
-          child: FlatButton(
-            onPressed: () {
-              playSound(6);
-            },
-            color: Colors.blue,
-          ),
-        ),
-        Expanded(
-          child: FlatButton(
-            onPressed: () {
-              playSound(7);
-            },
-            color: Colors.purple,
-          ),
-        ),
+        buildKey(Colors.red, 1),
+        buildKey(Colors.orange, 2),
+        buildKey(Colors.yellow, 3),
+        buildKey(Colors.green, 4),
+        buildKey(Colors.green.shade900, 5),
+        buildKey(Colors.blue, 6),
+        buildKey(Colors.purple, 7),
       ],
     );
   }
